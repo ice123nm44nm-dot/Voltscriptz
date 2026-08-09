@@ -24,21 +24,16 @@ const scripts = [
         image: "images/gakuran.png",
         status: "KEY SCRIPT",
         author: "@VOLTSCRIPTZ",
-        tags: ["KEY"],
-        views: 0,
-        likes: 0,
+        tags: ["KEY"],                
         script: `loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/4f3d18bc9dbd3e2969de560a450bc606.lua"))()`
     },
-
     {
         name: "Iron Soul Dungeon",
         game: "Iron Soul Dungeon",
         image: "images/Iron.png",
         status: "KEY SCRIPT",
         author: "@VOLTSCRIPTZ",
-        tags: ["KEY"],
-        views: 0,
-        likes: 0,
+        tags: ["KEY"],                
         script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/fba02abdeed4f653e1893580b250544c13ff66f648cbc2bd3baeb1fa21e6f21e/download"))()`
     }
 ];
