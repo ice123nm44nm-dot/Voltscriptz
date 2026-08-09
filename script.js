@@ -1,21 +1,20 @@
-```js
 /*
 ========================================
-VOLTSCRIPTZ SCRIPT DATABASE
+แก้ข้อมูล Script ตรงนี้ได้เลย
 ========================================
 
-แก้ข้อมูล Script ได้ตรงนี้
-
 image:
-ใส่ชื่อไฟล์รูปในโฟลเดอร์ images
-เช่น "images/gakuran.png"
+ใส่ชื่อไฟล์รูปในโฟลเดอร์ images เช่น "images/bloxfruit.jpg"
+ถ้ายังไม่มีรูป ให้ใส่ ""
 
-ถ้ายังไม่มีรูป:
-image: ""
+views:
+จำนวนยอดเข้าชมเริ่มต้น
+
+likes:
+จำนวน Like เริ่มต้น
 
 script:
 ใส่โค้ด Script ที่ต้องการแจก
-========================================
 */
 
 const scripts = [
@@ -26,24 +25,23 @@ const scripts = [
         status: "KEY SCRIPT",
         author: "@VOLTSCRIPTZ",
         tags: ["KEY"],
+        views: 0,
+        likes: 0,
         script: `loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/4f3d18bc9dbd3e2969de560a450bc606.lua"))()`
     },
 
     {
         name: "Iron Soul Dungeon",
         game: "Iron Soul Dungeon",
-        image: "images/iron.png",
+        image: "images/Iron.JPG",
         status: "KEY SCRIPT",
         author: "@VOLTSCRIPTZ",
         tags: ["KEY"],
+        views: 0,
+        likes: 0,
         script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/fba02abdeed4f653e1893580b250544c13ff66f648cbc2bd3baeb1fa21e6f21e/download"))()`
     }
 ];
-
-
-// ========================================
-// SYSTEM
-// ========================================
 
 let activeFilter = "ALL";
 let currentScript = null;
@@ -55,7 +53,7 @@ const resultCount = document.getElementById("resultCount");
 
 
 // ========================================
-// FILTER
+// สร้าง Filter
 // ========================================
 
 const filterList = [
@@ -64,16 +62,12 @@ const filterList = [
 ];
 
 filterList.forEach(tag => {
-
     const btn = document.createElement("button");
 
-    btn.className =
-        "filter" + (tag === "ALL" ? " active" : "");
-
+    btn.className = "filter" + (tag === "ALL" ? " active" : "");
     btn.textContent = tag;
 
     btn.onclick = () => {
-
         activeFilter = tag;
 
         document
@@ -90,22 +84,18 @@ filterList.forEach(tag => {
 
 
 // ========================================
-// RENDER CARDS
+// แสดง Script Cards
 // ========================================
 
 function render() {
 
-    const q = searchInput.value
-        .toLowerCase()
-        .trim();
-
+    const q = searchInput.value.toLowerCase().trim();
 
     const list = scripts.filter(s => {
 
         const matchesFilter =
             activeFilter === "ALL" ||
             s.tags.includes(activeFilter);
-
 
         const text = [
             s.name,
@@ -116,7 +106,6 @@ function render() {
             .join(" ")
             .toLowerCase();
 
-
         return matchesFilter && text.includes(q);
     });
 
@@ -125,104 +114,87 @@ function render() {
         `${list.length} Script${list.length !== 1 ? "s" : ""}`;
 
 
-    if (list.length === 0) {
+    cards.innerHTML = list.length
+        ? list.map(s => `
 
-        cards.innerHTML = `
+            <article class="card">
+
+                <div class="thumb">
+
+                    ${
+                        s.image
+                            ? `<img src="${escapeHtml(s.image)}" alt="${escapeHtml(s.name)}">`
+                            : `<div class="no-image">◈</div>`
+                    }
+
+                    <div class="view">
+                        ◉ ${Number(s.views) || 0}
+                    </div>
+
+                    <div class="status">
+                        ${escapeHtml(s.status)}
+                    </div>
+
+                </div>
+
+
+                <div class="card-body">
+
+                    <div class="game">
+                        ↗ ${escapeHtml(s.game)}
+                    </div>
+
+                    <h3>
+                        ${escapeHtml(s.name)}
+                    </h3>
+
+                    <div class="tags">
+                        ${s.tags
+                            .map(t => `<span>${escapeHtml(t)}</span>`)
+                            .join("")}
+                    </div>
+
+
+                    <div class="card-foot">
+
+                        <span class="author">
+                            ● ${escapeHtml(s.author)}
+                            · ♥ ${Number(s.likes) || 0}
+                        </span>
+
+
+                        <button
+                            class="get-btn"
+                            onclick="openScript(${scripts.indexOf(s)})"
+                        >
+                            GET SCRIPT ↗
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        `).join("")
+
+        : `
             <div
                 style="
                     grid-column:1/-1;
                     text-align:center;
                     padding:70px;
-                    color:#666;
+                    color:#666
                 "
             >
                 ไม่พบ Script ที่ค้นหา
             </div>
         `;
-
-        return;
-    }
-
-
-    cards.innerHTML = list.map(s => `
-
-        <article class="card">
-
-            <div class="thumb">
-
-                ${
-                    s.image
-                        ? `
-                            <img
-                                src="${escapeHtml(s.image)}"
-                                alt="${escapeHtml(s.name)}"
-                            >
-                          `
-                        : `
-                            <div class="no-image">
-                                ◈
-                            </div>
-                          `
-                }
-
-                <div class="status">
-                    ${escapeHtml(s.status)}
-                </div>
-
-            </div>
-
-
-            <div class="card-body">
-
-                <div class="game">
-                    ↗ ${escapeHtml(s.game)}
-                </div>
-
-
-                <h3>
-                    ${escapeHtml(s.name)}
-                </h3>
-
-
-                <div class="tags">
-
-                    ${s.tags
-                        .map(tag => `
-                            <span>
-                                ${escapeHtml(tag)}
-                            </span>
-                        `)
-                        .join("")}
-
-                </div>
-
-
-                <div class="card-foot">
-
-                    <span class="author">
-                        ● ${escapeHtml(s.author)}
-                    </span>
-
-
-                    <button
-                        class="get-btn"
-                        onclick="openScript(${scripts.indexOf(s)})"
-                    >
-                        GET SCRIPT ↗
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-    `).join("");
 }
 
 
 // ========================================
-// OPEN SCRIPT MODAL
+// เปิดหน้าต่าง Script
 // ========================================
 
 function openScript(index) {
@@ -233,69 +205,37 @@ function openScript(index) {
         return;
     }
 
+    document.getElementById("modalTitle").textContent =
+        currentScript.name;
 
-    const modalTitle =
-        document.getElementById("modalTitle");
+    document.getElementById("modalGame").textContent =
+        currentScript.game;
 
-    const modalGame =
-        document.getElementById("modalGame");
+    document.getElementById("scriptCode").value =
+        currentScript.script;
 
-    const scriptCode =
-        document.getElementById("scriptCode");
+    document.getElementById("copyStatus").textContent = "";
 
-    const copyStatus =
-        document.getElementById("copyStatus");
-
-    const scriptModal =
-        document.getElementById("scriptModal");
-
-
-    if (modalTitle) {
-        modalTitle.textContent =
-            currentScript.name;
-    }
-
-
-    if (modalGame) {
-        modalGame.textContent =
-            currentScript.game;
-    }
-
-
-    if (scriptCode) {
-        scriptCode.value =
-            currentScript.script;
-    }
-
-
-    if (copyStatus) {
-        copyStatus.textContent = "";
-    }
-
-
-    if (scriptModal) {
-        scriptModal.classList.remove("hidden");
-    }
+    document
+        .getElementById("scriptModal")
+        .classList.remove("hidden");
 }
 
 
 // ========================================
-// CLOSE MODAL
+// ปิดหน้าต่าง Script
 // ========================================
 
 function closeModal() {
 
-    const modal =
-        document.getElementById("scriptModal");
-
-    if (modal) {
-        modal.classList.add("hidden");
-    }
+    document
+        .getElementById("scriptModal")
+        .classList.add("hidden");
 }
 
 
 // ========================================
-// COPY SCRIPT
+// Copy Script
 // ========================================
 
 async function copyScript() {
@@ -304,56 +244,32 @@ async function copyScript() {
         return;
     }
 
-
     try {
 
         await navigator.clipboard.writeText(
             currentScript.script
         );
 
-
-        const copyStatus =
-            document.getElementById("copyStatus");
-
-
-        if (copyStatus) {
-
-            copyStatus.textContent =
-                "คัดลอก Script แล้ว ✓";
-
-        }
+        document.getElementById("copyStatus").textContent =
+            "คัดลอก Script แล้ว ✓";
 
     } catch {
 
         const textarea =
             document.getElementById("scriptCode");
 
+        textarea.select();
 
-        if (textarea) {
+        document.execCommand("copy");
 
-            textarea.select();
-
-            document.execCommand("copy");
-
-        }
-
-
-        const copyStatus =
-            document.getElementById("copyStatus");
-
-
-        if (copyStatus) {
-
-            copyStatus.textContent =
-                "คัดลอก Script แล้ว ✓";
-
-        }
+        document.getElementById("copyStatus").textContent =
+            "คัดลอก Script แล้ว ✓";
     }
 }
 
 
 // ========================================
-// INFO
+// Info
 // ========================================
 
 function showInfo() {
@@ -366,7 +282,7 @@ function showInfo() {
 
 
 // ========================================
-// ESCAPE HTML
+// ป้องกัน HTML แปลก ๆ
 // ========================================
 
 function escapeHtml(text) {
@@ -389,50 +305,29 @@ function escapeHtml(text) {
 
 
 // ========================================
-// SEARCH
+// Search
 // ========================================
 
-if (searchInput) {
-
-    searchInput.addEventListener(
-        "input",
-        render
-    );
-
-}
+searchInput.addEventListener("input", render);
 
 
 // ========================================
-// CLOSE MODAL WHEN CLICK OUTSIDE
+// ปิด Modal เมื่อกดด้านนอก
 // ========================================
 
-const scriptModal =
-    document.getElementById("scriptModal");
+document
+    .getElementById("scriptModal")
+    .addEventListener("click", e => {
 
-
-if (scriptModal) {
-
-    scriptModal.addEventListener(
-        "click",
-        e => {
-
-            if (
-                e.target.id === "scriptModal"
-            ) {
-
-                closeModal();
-
-            }
-
+        if (e.target.id === "scriptModal") {
+            closeModal();
         }
-    );
 
-}
+    });
 
 
 // ========================================
-// START
+// เริ่มต้น
 // ========================================
 
 render();
-```
