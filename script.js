@@ -64,7 +64,7 @@ function render() {
   cards.innerHTML = list.length ? list.map((s, i) => `
     <article class="card">
       <div class="thumb">
-        ${s.image ? `<img src="${s.image}" alt="">` : `<div class="thumb-placeholder">◈</div>`}
+        ${s.image ? `<img src="${s.image}" alt="${escapeHtml(s.name)}">` : `◈`}
       </div>
       <div class="card-body">
         <div class="game">↗ ${escapeHtml(s.game)}</div>
