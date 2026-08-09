@@ -1,17 +1,10 @@
+```js
 /*
-========================================
-แก้ข้อมูล Script ตรงนี้ได้เลย
-========================================
+# แก้ข้อมูล Script ตรงนี้ได้เลย
 
 image:
 ใส่ชื่อไฟล์รูปในโฟลเดอร์ images เช่น "images/bloxfruit.jpg"
 ถ้ายังไม่มีรูป ให้ใส่ ""
-
-views:
-จำนวนยอดเข้าชมเริ่มต้น
-
-likes:
-จำนวน Like เริ่มต้น
 
 script:
 ใส่โค้ด Script ที่ต้องการแจก
@@ -25,20 +18,16 @@ const scripts = [
         status: "KEY SCRIPT",
         author: "@VOLTSCRIPTZ",
         tags: ["KEY"],
-        views: 0,
-        likes: 0,
         script: `loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/4f3d18bc9dbd3e2969de560a450bc606.lua"))()`
     },
 
     {
         name: "Iron Soul Dungeon",
         game: "Iron Soul Dungeon",
-        image: "images/Iron.JPG",
+        image: "images/iron.png",
         status: "KEY SCRIPT",
         author: "@VOLTSCRIPTZ",
         tags: ["KEY"],
-        views: 0,
-        likes: 0,
         script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/fba02abdeed4f653e1893580b250544c13ff66f648cbc2bd3baeb1fa21e6f21e/download"))()`
     }
 ];
@@ -51,7 +40,6 @@ const filters = document.getElementById("filters");
 const searchInput = document.getElementById("searchInput");
 const resultCount = document.getElementById("resultCount");
 
-
 // ========================================
 // สร้าง Filter
 // ========================================
@@ -62,12 +50,16 @@ const filterList = [
 ];
 
 filterList.forEach(tag => {
+
     const btn = document.createElement("button");
 
-    btn.className = "filter" + (tag === "ALL" ? " active" : "");
+    btn.className =
+        "filter" + (tag === "ALL" ? " active" : "");
+
     btn.textContent = tag;
 
     btn.onclick = () => {
+
         activeFilter = tag;
 
         document
@@ -82,14 +74,16 @@ filterList.forEach(tag => {
     filters.appendChild(btn);
 });
 
-
 // ========================================
 // แสดง Script Cards
 // ========================================
 
 function render() {
 
-    const q = searchInput.value.toLowerCase().trim();
+    const q =
+        searchInput.value
+            .toLowerCase()
+            .trim();
 
     const list = scripts.filter(s => {
 
@@ -109,12 +103,11 @@ function render() {
         return matchesFilter && text.includes(q);
     });
 
-
     resultCount.textContent =
         `${list.length} Script${list.length !== 1 ? "s" : ""}`;
 
-
     cards.innerHTML = list.length
+
         ? list.map(s => `
 
             <article class="card">
@@ -126,10 +119,6 @@ function render() {
                             ? `<img src="${escapeHtml(s.image)}" alt="${escapeHtml(s.name)}">`
                             : `<div class="no-image">◈</div>`
                     }
-
-                    <div class="view">
-                        ◉ ${Number(s.views) || 0}
-                    </div>
 
                     <div class="status">
                         ${escapeHtml(s.status)}
@@ -149,9 +138,15 @@ function render() {
                     </h3>
 
                     <div class="tags">
+
                         ${s.tags
-                            .map(t => `<span>${escapeHtml(t)}</span>`)
+                            .map(t => `
+                                <span>
+                                    ${escapeHtml(t)}
+                                </span>
+                            `)
                             .join("")}
+
                     </div>
 
 
@@ -159,7 +154,6 @@ function render() {
 
                         <span class="author">
                             ● ${escapeHtml(s.author)}
-                            · ♥ ${Number(s.likes) || 0}
                         </span>
 
 
@@ -192,7 +186,6 @@ function render() {
         `;
 }
 
-
 // ========================================
 // เปิดหน้าต่าง Script
 // ========================================
@@ -221,7 +214,6 @@ function openScript(index) {
         .classList.remove("hidden");
 }
 
-
 // ========================================
 // ปิดหน้าต่าง Script
 // ========================================
@@ -232,7 +224,6 @@ function closeModal() {
         .getElementById("scriptModal")
         .classList.add("hidden");
 }
-
 
 // ========================================
 // Copy Script
@@ -267,7 +258,6 @@ async function copyScript() {
     }
 }
 
-
 // ========================================
 // Info
 // ========================================
@@ -279,7 +269,6 @@ function showInfo() {
         "แก้ข้อมูล Script ได้ในไฟล์ script.js"
     );
 }
-
 
 // ========================================
 // ป้องกัน HTML แปลก ๆ
@@ -303,13 +292,14 @@ function escapeHtml(text) {
     );
 }
 
-
 // ========================================
 // Search
 // ========================================
 
-searchInput.addEventListener("input", render);
-
+searchInput.addEventListener(
+    "input",
+    render
+);
 
 // ========================================
 // ปิด Modal เมื่อกดด้านนอก
@@ -325,9 +315,9 @@ document
 
     });
 
-
 // ========================================
 // เริ่มต้น
 // ========================================
 
 render();
+```
