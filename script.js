@@ -33,7 +33,7 @@ const scripts = [
     {
         name: "Iron Soul Dungeon",
         game: "Iron Soul Dungeon",
-        image: "images/Iron.JPG",
+        image: "images/Iron.png",
         status: "KEY SCRIPT",
         author: "@VOLTSCRIPTZ",
         tags: ["KEY"],
