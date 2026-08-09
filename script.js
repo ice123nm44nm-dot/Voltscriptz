@@ -19,7 +19,6 @@ script:
 */
 
 const scripts = [
-
     {
         name: "GAKURAN",
         game: "GAKURAN",
@@ -27,21 +26,18 @@ const scripts = [
         status: "KEY SCRIPT",
         author: "@VOLTSCRIPTZ",
         tags: ["KEY"],
-
         script: `loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/4f3d18bc9dbd3e2969de560a450bc606.lua"))()`
     },
 
     {
         name: "Iron Soul Dungeon",
         game: "Iron Soul Dungeon",
-        image: "images/Iron.png",
+        image: "images/iron.png",
         status: "KEY SCRIPT",
         author: "@VOLTSCRIPTZ",
         tags: ["KEY"],
-
         script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/fba02abdeed4f653e1893580b250544c13ff66f648cbc2bd3baeb1fa21e6f21e/download"))()`
     }
-
 ];
 
 
@@ -90,20 +86,18 @@ filterList.forEach(tag => {
     };
 
     filters.appendChild(btn);
-
 });
 
 
 // ========================================
-// RENDER SCRIPT
+// RENDER CARDS
 // ========================================
 
 function render() {
 
-    const q =
-        searchInput.value
-            .toLowerCase()
-            .trim();
+    const q = searchInput.value
+        .toLowerCase()
+        .trim();
 
 
     const list = scripts.filter(s => {
@@ -114,22 +108,16 @@ function render() {
 
 
         const text = [
-
             s.name,
             s.game,
             s.author,
             ...s.tags
-
         ]
             .join(" ")
             .toLowerCase();
 
 
-        return (
-            matchesFilter &&
-            text.includes(q)
-        );
-
+        return matchesFilter && text.includes(q);
     });
 
 
@@ -137,88 +125,9 @@ function render() {
         `${list.length} Script${list.length !== 1 ? "s" : ""}`;
 
 
-    cards.innerHTML = list.length
+    if (list.length === 0) {
 
-        ? list.map(s => `
-
-            <article class="card">
-
-                <div class="thumb">
-
-                    ${
-                        s.image
-
-                            ? `
-                                <img
-                                    src="${escapeHtml(s.image)}"
-                                    alt="${escapeHtml(s.name)}"
-                                >
-                              `
-
-                            : `
-                                <div class="no-image">
-                                    ◈
-                                </div>
-                              `
-                    }
-
-                    <div class="status">
-                        ${escapeHtml(s.status)}
-                    </div>
-
-                </div>
-
-
-                <div class="card-body">
-
-                    <div class="game">
-                        ↗ ${escapeHtml(s.game)}
-                    </div>
-
-
-                    <h3>
-                        ${escapeHtml(s.name)}
-                    </h3>
-
-
-                    <div class="tags">
-
-                        ${s.tags
-                            .map(t => `
-                                <span>
-                                    ${escapeHtml(t)}
-                                </span>
-                            `)
-                            .join("")}
-
-                    </div>
-
-
-                    <div class="card-foot">
-
-                        <span class="author">
-                            ● ${escapeHtml(s.author)}
-                        </span>
-
-
-                        <button
-                            class="get-btn"
-                            onclick="openScript(${scripts.indexOf(s)})"
-                        >
-                            GET SCRIPT ↗
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-        `).join("")
-
-
-        : `
-
+        cards.innerHTML = `
             <div
                 style="
                     grid-column:1/-1;
@@ -229,13 +138,91 @@ function render() {
             >
                 ไม่พบ Script ที่ค้นหา
             </div>
-
         `;
+
+        return;
+    }
+
+
+    cards.innerHTML = list.map(s => `
+
+        <article class="card">
+
+            <div class="thumb">
+
+                ${
+                    s.image
+                        ? `
+                            <img
+                                src="${escapeHtml(s.image)}"
+                                alt="${escapeHtml(s.name)}"
+                            >
+                          `
+                        : `
+                            <div class="no-image">
+                                ◈
+                            </div>
+                          `
+                }
+
+                <div class="status">
+                    ${escapeHtml(s.status)}
+                </div>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <div class="game">
+                    ↗ ${escapeHtml(s.game)}
+                </div>
+
+
+                <h3>
+                    ${escapeHtml(s.name)}
+                </h3>
+
+
+                <div class="tags">
+
+                    ${s.tags
+                        .map(tag => `
+                            <span>
+                                ${escapeHtml(tag)}
+                            </span>
+                        `)
+                        .join("")}
+
+                </div>
+
+
+                <div class="card-foot">
+
+                    <span class="author">
+                        ● ${escapeHtml(s.author)}
+                    </span>
+
+
+                    <button
+                        class="get-btn"
+                        onclick="openScript(${scripts.indexOf(s)})"
+                    >
+                        GET SCRIPT ↗
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `).join("");
 }
 
 
 // ========================================
-// OPEN SCRIPT
+// OPEN SCRIPT MODAL
 // ========================================
 
 function openScript(index) {
@@ -247,25 +234,48 @@ function openScript(index) {
     }
 
 
-    document.getElementById("modalTitle")
-        .textContent = currentScript.name;
+    const modalTitle =
+        document.getElementById("modalTitle");
+
+    const modalGame =
+        document.getElementById("modalGame");
+
+    const scriptCode =
+        document.getElementById("scriptCode");
+
+    const copyStatus =
+        document.getElementById("copyStatus");
+
+    const scriptModal =
+        document.getElementById("scriptModal");
 
 
-    document.getElementById("modalGame")
-        .textContent = currentScript.game;
+    if (modalTitle) {
+        modalTitle.textContent =
+            currentScript.name;
+    }
 
 
-    document.getElementById("scriptCode")
-        .value = currentScript.script;
+    if (modalGame) {
+        modalGame.textContent =
+            currentScript.game;
+    }
 
 
-    document.getElementById("copyStatus")
-        .textContent = "";
+    if (scriptCode) {
+        scriptCode.value =
+            currentScript.script;
+    }
 
 
-    document.getElementById("scriptModal")
-        .classList.remove("hidden");
+    if (copyStatus) {
+        copyStatus.textContent = "";
+    }
 
+
+    if (scriptModal) {
+        scriptModal.classList.remove("hidden");
+    }
 }
 
 
@@ -275,10 +285,12 @@ function openScript(index) {
 
 function closeModal() {
 
-    document
-        .getElementById("scriptModal")
-        .classList.add("hidden");
+    const modal =
+        document.getElementById("scriptModal");
 
+    if (modal) {
+        modal.classList.add("hidden");
+    }
 }
 
 
@@ -300,30 +312,43 @@ async function copyScript() {
         );
 
 
-        document.getElementById("copyStatus")
-            .textContent =
-            "คัดลอก Script แล้ว ✓";
+        const copyStatus =
+            document.getElementById("copyStatus");
 
-    }
 
-    catch {
+        if (copyStatus) {
+
+            copyStatus.textContent =
+                "คัดลอก Script แล้ว ✓";
+
+        }
+
+    } catch {
 
         const textarea =
             document.getElementById("scriptCode");
 
 
-        textarea.select();
+        if (textarea) {
+
+            textarea.select();
+
+            document.execCommand("copy");
+
+        }
 
 
-        document.execCommand("copy");
+        const copyStatus =
+            document.getElementById("copyStatus");
 
 
-        document.getElementById("copyStatus")
-            .textContent =
-            "คัดลอก Script แล้ว ✓";
+        if (copyStatus) {
 
+            copyStatus.textContent =
+                "คัดลอก Script แล้ว ✓";
+
+        }
     }
-
 }
 
 
@@ -337,7 +362,6 @@ function showInfo() {
         "หน้าเว็บนี้เป็น Static Website ไม่มีระบบหลังบ้าน\n" +
         "แก้ข้อมูล Script ได้ในไฟล์ script.js"
     );
-
 }
 
 
@@ -349,22 +373,18 @@ function escapeHtml(text) {
 
     return String(text).replace(
         /[&<>"']/g,
-
-        function(c) {
+        function (c) {
 
             return {
-
                 "&": "&amp;",
                 "<": "&lt;",
                 ">": "&gt;",
                 '"': "&quot;",
                 "'": "&#039;"
-
             }[c];
 
         }
     );
-
 }
 
 
@@ -372,29 +392,42 @@ function escapeHtml(text) {
 // SEARCH
 // ========================================
 
-searchInput.addEventListener(
-    "input",
-    render
-);
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        render
+    );
+
+}
 
 
 // ========================================
-// CLOSE MODAL OUTSIDE
+// CLOSE MODAL WHEN CLICK OUTSIDE
 // ========================================
 
-document
-    .getElementById("scriptModal")
-    .addEventListener("click", e => {
+const scriptModal =
+    document.getElementById("scriptModal");
 
-        if (
-            e.target.id === "scriptModal"
-        ) {
 
-            closeModal();
+if (scriptModal) {
+
+    scriptModal.addEventListener(
+        "click",
+        e => {
+
+            if (
+                e.target.id === "scriptModal"
+            ) {
+
+                closeModal();
+
+            }
 
         }
+    );
 
-    });
+}
 
 
 // ========================================
