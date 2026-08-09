@@ -25,6 +25,15 @@ const scripts = [
     tags: ["KEY"],
     script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/fba02abdeed4f653e1893580b250544c13ff66f648cbc2bd3baeb1fa21e6f21e/download"))()`
   },
+  {
+    name: "Real",
+    game: "Real",
+    image: "images/Real.png",
+    status: "EXECUTOR",
+    author: "@VOLTSCRIPTZ",
+    tags: ["EXECUTOR KEY"],
+    script: `Copy and Paste : https://projectreal.gg/`
+  },
 ];
 
 let activeFilter = "ALL";
