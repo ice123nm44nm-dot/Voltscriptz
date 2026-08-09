@@ -1,61 +1,10 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VOLTSCRIPTZ</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="bg-grid"></div>
+<div class="filters" id="filters"></div>
 
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-dot"></div>
-      <span>VOLT</span>
-      <small>SCRIPTZ</small>
-    </div>
-    <div class="search-wrap">
-      <span>⌕</span>
-      <input id="searchInput" type="text" placeholder="ค้นหา Script หรือชื่อเกม...">
-    </div>
-    <button class="admin-pill" onclick="showInfo()">⚙ ADMIN</button>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div>
-        <p class="eyebrow">ROBLOX SCRIPT DIRECTORY</p>
-        <h1>Free Script <span>Roblox</span></h1>
-        <p class="subtitle">รวม Script ที่คุณต้องการไว้ในที่เดียว</p>
-      </div>
-    </section>
-
-    <div class="filters" id="filters"></div>
-
-    <section class="section-head">
-      <div>
-        <h2>SCRIPT</h2>
-        <p id="resultCount">กำลังโหลด...</p>
-      </div>
-    </section>
-
-    <section class="cards" id="cards"></section>
-  </main>
-
-  <div class="modal hidden" id="scriptModal">
-    <div class="modal-box">
-      <button class="close" onclick="closeModal()">×</button>
-      <div class="modal-tag">SCRIPT</div>
-      <h2 id="modalTitle">Script</h2>
-      <p id="modalGame"></p>
-      <textarea id="scriptCode" readonly></textarea>
-      <button class="copy-btn" onclick="copyScript()">📋 COPY SCRIPT</button>
-      <p class="copy-status" id="copyStatus"></p>
-    </div>
+<section class="section-head">
+  <div>
+    <h2>SCRIPT</h2>
+    <p id="resultCount">กำลังโหลด...</p>
   </div>
+</section>
 
-  <footer>EXZENT SCRIPT HUB • Static Website</footer>
-  <script src="script.js"></script>
-</body>
-</html>
+<section class="cards" id="cards"></section>
