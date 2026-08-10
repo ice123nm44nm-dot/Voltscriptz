@@ -7,6 +7,15 @@
   script: ใส่โค้ด Script ที่ต้องการแจก
 */
 const scripts = [
+{
+    name: "San Diego Border Roleplay",
+    game: "San Diego Border Roleplay",
+    image: "images/SanDiego.png",
+    status: "KEY SCRIPT",
+    author: "@VOLTSCRIPTZ",
+    tags: ["KEY"],
+    script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/adff9b33e46197721a37f4d1ad509d418db5cfb1f4899c166f10781be92b5389/download"))()`
+  },
   {
     name: "GAKURAN",
     game: "GAKURAN",
