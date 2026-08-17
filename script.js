@@ -41,7 +41,7 @@ const scripts = [
     status: "EXECUTOR",
     author: "@VOLTSCRIPTZ",
     tags: ["EXECUTOR KEY"],
-    script: `Copy and Paste : https://projectreal.gg/`
+    script: `Copy and Paste : `https://projectreal.gg/`
   },
   {
     name: "Magic Loot",
@@ -50,7 +50,7 @@ const scripts = [
     status: "KEY SCRIPT",
     author: "@VOLTSCRIPTZ",
     tags: ["KEY"],
-    script: `Copy and Paste : https://projectreal.gg/`
+    script: `Copy and Paste : `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/4c2fde7fb17b25f6455bcc2c7a9110b7b5e46048cda8ff9832722af290ac5d08/download"))()`
   },
 ];
 
