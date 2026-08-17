@@ -9,7 +9,7 @@
 const scripts = [
   {
     name: "Magic Loot",
-    game: "Magic Loot ",
+    game: "Magic Loot",
     image: "images/Real.png",
     status: "KEY SCRIPT",
     author: "@VOLTSCRIPTZ",
