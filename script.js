@@ -43,6 +43,15 @@ const scripts = [
     tags: ["EXECUTOR KEY"],
     script: `Copy and Paste : https://projectreal.gg/`
   },
+  {
+    name: "Magic Loot",
+    game: "Magic Loot ",
+    image: "images/Real.png",
+    status: "KEY SCRIPT",
+    author: "@VOLTSCRIPTZ",
+    tags: ["KEY"],
+    script: `Copy and Paste : https://projectreal.gg/`
+  },
 ];
 
 let activeFilter = "ALL";
