@@ -52,7 +52,6 @@ const scripts = [
     tags: ["EXECUTOR KEY"],
     script: `Copy and Paste : `https://projectreal.gg/`
   },
-  {
 ];
 
 let activeFilter = "ALL";
