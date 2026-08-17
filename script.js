@@ -14,7 +14,7 @@ const scripts = [
     status: "KEY SCRIPT",
     author: "@VOLTSCRIPTZ",
     tags: ["KEY"],
-    script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/4c2fde7fb17b25f6455bcc2c7a9110b7b5e46048cda8ff9832722af290ac5d08/download"))()`
+    script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/c83ba9fc1eb53ca179337555be7a6d546cecf15effafd8ae432e9b02e3581f3b/download"))()`
   },
 {
     name: "San Diego Border Roleplay",
