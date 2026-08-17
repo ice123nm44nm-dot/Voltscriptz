@@ -7,6 +7,15 @@
   script: ใส่โค้ด Script ที่ต้องการแจก
 */
 const scripts = [
+  {
+    name: "Magic Loot",
+    game: "Magic Loot ",
+    image: "images/Real.png",
+    status: "KEY SCRIPT",
+    author: "@VOLTSCRIPTZ",
+    tags: ["KEY"],
+    script: `Copy and Paste : `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/4c2fde7fb17b25f6455bcc2c7a9110b7b5e46048cda8ff9832722af290ac5d08/download"))()`
+  },
 {
     name: "San Diego Border Roleplay",
     game: "San Diego Border Roleplay",
@@ -44,14 +53,6 @@ const scripts = [
     script: `Copy and Paste : `https://projectreal.gg/`
   },
   {
-    name: "Magic Loot",
-    game: "Magic Loot ",
-    image: "images/Real.png",
-    status: "KEY SCRIPT",
-    author: "@VOLTSCRIPTZ",
-    tags: ["KEY"],
-    script: `Copy and Paste : `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/4c2fde7fb17b25f6455bcc2c7a9110b7b5e46048cda8ff9832722af290ac5d08/download"))()`
-  },
 ];
 
 let activeFilter = "ALL";
