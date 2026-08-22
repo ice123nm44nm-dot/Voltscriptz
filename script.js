@@ -8,6 +8,15 @@
 */
 const scripts = [
   {
+    name: "Ghost Driver",
+    game: "Ghost Driver",
+    image: "images/GHOSTDRIVER.png",
+    status: "KEY SCRIPT",
+    author: "@VOLTSCRIPTZ",
+    tags: ["KEY"],
+    script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/c83ba9fc1eb53ca179337555be7a6d546cecf15effafd8ae432e9b02e3581f3b/download"))()`
+  },
+  {
     name: "Magic Loot",
     game: "Magic Loot",
     image: "images/MagicLoot.png",
