@@ -10,7 +10,7 @@ const scripts = [
   {
     name: "Clean All Leaves",
     game: "Clean All Leaves",
-    image: "images/Clean.png",
+    image: "images/Clean.jpg",
     status: "KEY SCRIPT",
     author: "@VOLTSCRIPTZ",
     tags: ["KEY"],
