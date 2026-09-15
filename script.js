@@ -7,6 +7,15 @@
   script: ใส่โค้ด Script ที่ต้องการแจก
 */
 const scripts = [
+  {
+    name: "Ride A Pet",
+    game: "Ride A Pet",
+    image: "images/Ride A Pet.png",
+    status: "KEY SCRIPT",
+    author: "@VOLTSCRIPTZ",
+    tags: ["KEY"],
+    script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/c83ba9fc1eb53ca179337555be7a6d546cecf15effafd8ae432e9b02e3581f3b/download"))()`
+  },
    {
     name: "Dungeon Lootr",
     game: "Dungeon Lootr",
