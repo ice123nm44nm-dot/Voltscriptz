@@ -10,7 +10,7 @@ const scripts = [
    {
     name: "Dungeon Lootr",
     game: "Dungeon Lootr",
-    image: "images/Dungeon Lootr.png",
+    image: "images/Dungeon Lootr V1.png",
     status: "KEY SCRIPT",
     author: "@VOLTSCRIPTZ",
     tags: ["KEY"],
