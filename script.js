@@ -8,6 +8,15 @@
 */
 const scripts = [
   {
+    name: "Anime Dice",
+    game: "Anime Dice",
+    image: "images/Anime Dice.png",
+    status: "KEY SCRIPT",
+    author: "@VOLTSCRIPTZ",
+    tags: ["KEY"],
+    script: `loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/c83ba9fc1eb53ca179337555be7a6d546cecf15effafd8ae432e9b02e3581f3b/download"))()`
+  },
+  {
     name: "Ride A Pet",
     game: "Ride A Pet",
     image: "images/Ride A Pet.png",
